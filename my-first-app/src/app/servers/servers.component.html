@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <label>{{ serverName }}</label>
+      <input type="text" class="form-control" (input)="onUpdateServerName($event)"/>
+
+      <input type="text" class="form-control" [(ngModel)] = "serverName"/>
+
+      <input type="text" class="form-control" [(ngModel)] = "userName"/>
+
+      <p> {{ userName }}</p>
+
+      <button class="btn btn-primary" [disabled]="enableButtonOnUser()" (click)="onClickUserButton()">User Button</button>
+      <!--<p>{{ serverNameTwoWayBinding }}</p>-->
+      <button class="btn btn-primary" [disabled]="allowNewServer" (click)="onCreateServer()">Add Servers</button>
+      <!--<p [innerText]="allowNewServer"></p>-->
+      <!--<p class="{{ someValue }}">{{ serverCreationStatus }}</p>-->
+
+      <p *ngIf="serverCreated">server was created ngif on property serverCreated, server name is {{ serverName }}</p>
+      <p class=testClass *ngIf="serverName.length > 0; else NoServerName">server was created, server name is {{ serverName }}</p>
+      <ng-template #NoServerName>
+        <p class=testElseClass>
+          No Server was created
+        </p>
+      </ng-template>;
+      <app-server *ngFor="let server of servers"></app-server>
+      <button class="btn btn-primary" (click)="onDisplayButtonClick()">Display Details</button>
+      <p *ngIf="buttonClicked"> secret password = 'varun' </p>
+      <!--<p *ngFor="let buttonCount of buttonClicks"
+         [ngClass]="{buttonForDisplayClass : buttonCount >5 }"
+         [ngStyle]="{backgroundColor: buttonCount > 5 ? 'blue' : none }"
+      >{{ buttonCount }}</p>-->
+
+      <p *ngFor="let buttonCount of buttonClicks; let i = index"
+         [ngClass]="{buttonForDisplayClass : i >5 }"
+         [ngStyle]="{backgroundColor: i > 5 ? 'blue' : none }"
+      >{{ buttonCount }}</p>
+    </div>
+  </div>
+</div>
+
